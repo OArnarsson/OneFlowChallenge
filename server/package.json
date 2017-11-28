@@ -1,0 +1,21 @@
+{
+  "dependencies": {
+    "apidoc": "^0.17.6",
+    "cors": "^2.8.4",
+    "express": "^4.16.2",
+    "helmet": "^3.9.0",
+    "mongoose": "^4.13.5"
+  },
+  "scripts": {
+    "apidoc": "apidoc -i routes -o static/ -e static/"
+  },
+  "apidoc": {
+    "title": "OArnarsson - OneFlowSystems",
+    "name": "OneFlow Systems - Coding challenge",
+    "version": "1.0.0",
+    "description": "created by OArnarsson",
+    "template": {
+      "withCompare": false
+    }
+  }
+}
