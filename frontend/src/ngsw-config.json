@@ -1,0 +1,39 @@
+{
+  "index": "/index.html",
+  "assetGroups": [{
+    "name": "app",
+    "installMode": "prefetch",
+    "resources": {
+      "files": [
+        "/favicon.ico",
+        "/index.html"
+      ],
+      "versionedFiles": [
+        "/*.bundle.css",
+        "/*.bundle.js",
+        "/*.chunk.js"
+      ]
+    }
+  }, {
+    "name": "assets",
+    "installMode": "lazy",
+    "updateMode": "prefetch",
+    "resources": {
+      "files": [
+        "/assets/**"
+      ]
+    }
+  }],
+  "dataGroups": [{
+    "name": "apiData",
+    "urls": [
+     "/api/series/Silicon Valley"
+    ],
+    "cacheConfig": {
+      "maxSize": 100,
+      "maxAge": "24h",
+      "timeout": "15s",
+      "strategy": "performance"
+    }
+  }]
+}
