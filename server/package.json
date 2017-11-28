@@ -2,12 +2,16 @@
   "dependencies": {
     "apidoc": "^0.17.6",
     "cors": "^2.8.4",
+    "expect": "^21.2.1",
     "express": "^4.16.2",
     "helmet": "^3.9.0",
-    "mongoose": "^4.13.5"
+    "mongoose": "^4.13.5",
+    "supertest": "^3.0.0"
   },
   "scripts": {
-    "apidoc": "apidoc -i routes -o static/ -e static/"
+    "test": "npm run series",
+    "apidoc": "apidoc -i routes -o static/docs/ -e static/docs/",
+    "series": "mocha tests/series.test.js --exit"
   },
   "apidoc": {
     "title": "OArnarsson - OneFlowSystems",
