@@ -1,0 +1,52 @@
+@import '../../styles';
+
+.masterContainer {
+  position: fixed;
+  top: 0;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  display: flex;
+  justify-content: space-between;
+  padding: 0;
+  margin: 0;
+  background-color: $color-bg;
+  color: $color-text;
+
+  > div {
+    height: 100%;
+  }
+}
+
+.hero {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  width: 40%;
+  padding-left: 16px;
+  text-align: center;
+  .poster {
+    height: 70%;
+    width: 100%;
+    background-repeat: no-repeat;
+    background-position: center;
+    background-size: contain;
+  }
+  .name {
+    font-size: 3.5rem;
+    color: $color-main;
+  }
+}
+
+.main {
+  overflow-y: auto;
+  width: calc(60% - (2 * 16px));
+  .episodeContainer {
+    padding: 8px;
+    padding-right: 16px;
+    .episode {
+      padding: 8px;
+      background-color: rebeccapurple;
+    }
+  }
+}

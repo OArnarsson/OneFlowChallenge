@@ -26,8 +26,9 @@
   }],
   "dataGroups": [{
     "name": "apiData",
+    "match": "prefix",
     "urls": [
-     "/api/series/Silicon Valley"
+     "http://localhost:3000/api/series"
     ],
     "cacheConfig": {
       "maxSize": 100,

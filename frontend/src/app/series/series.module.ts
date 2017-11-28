@@ -4,6 +4,7 @@ import { SeriesService } from "./series.service";
 import { SeriesComponent } from "./series.component";
 import { RouterModule } from "@angular/router";
 import { HttpClientModule } from "@angular/common/http";
+import {SanitizePipe} from "../pipes/sanitize.pipe";
 
 @NgModule({
   imports: [
@@ -11,7 +12,7 @@ import { HttpClientModule } from "@angular/common/http";
     HttpClientModule,
     RouterModule.forChild([{path: '', component: SeriesComponent}])
   ],
-  declarations: [SeriesComponent],
+  declarations: [SeriesComponent, SanitizePipe],
   providers: [SeriesService],
 })
 
