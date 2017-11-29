@@ -28,7 +28,8 @@
     "name": "apiData",
     "match": "prefix",
     "urls": [
-     "http://localhost:3000/api/series"
+     "http://localhost:3000/api/series",
+     "http://localhost:3000/docs"
     ],
     "cacheConfig": {
       "maxSize": 100,

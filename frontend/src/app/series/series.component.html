@@ -1,6 +1,6 @@
 <div class="masterContainer">
   <div class="hero">
-    <div class="poster" [ngStyle]="{'background-image': 'url(' + series?.image?.original + ')'}"></div>
+    <div class="poster" *ngIf="series" [ngStyle]="{'background-image': 'url(' + series.image?.original + ')'}"></div>
     <div class="summary" [innerHTML]="series?.summary | sanitize"></div>
   </div>
 
@@ -28,7 +28,7 @@
           <div class="infoContainer">
             <div class="title" [innerHTML]="episode.name | sanitize"></div>
             <div class="season"><span (click)="filterBySeason(episode.season)">Season {{episode.season}}</span> <span
-                (click)="this.query.setValue(episode.name)">Episode {{episode.number}}</span></div>
+                (click)="filterString = episode.name">Episode {{episode.number}}</span></div>
           </div>
         </div>
 
