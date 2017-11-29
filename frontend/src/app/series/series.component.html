@@ -22,13 +22,15 @@
     </div>
 
     <div class="masterEpisodeContainer">
-        <div class="episode" *ngFor="let episode of filteredEpisodes">
+      <div class="episodeContainer" *ngFor="let episode of filteredEpisodes">
+        <div class="episode">
           <div class="thumbnail" [ngStyle]="{'background-image': 'url(' + episode?.image?.medium+ ')'}"></div>
           <div class="infoContainer">
             <div class="title">{{episode.name}}</div>
             <div class="season"><span (click)="filterBySeason(episode.season)">Season {{episode.season}}</span> <span
                 (click)="this.query.setValue(episode.name)">Episode {{episode.number}}</span></div>
           </div>
+        </div>
       </div>
     </div>
   </div>

@@ -21,7 +21,15 @@
 .hero {
   position: relative;
   width: 286px;
+  transition: width .4s;
   padding-left: 16px;
+
+  @media (max-width: 1133px) {
+    width: 0;
+    opacity: 0;
+    pointer-events: none;
+  }
+
   .poster {
     position: absolute;
     top: 0;
@@ -43,20 +51,25 @@
   display: flex;
   flex-direction: column;
   width: calc(100% - 286px - (2 * 16px));
+  transition: width .4s;
+
+  @media (max-width: 1133px) {
+    width: 100%;
+  }
 }
 
 .filterContainer {
   width: 100%;
-  margin-bottom: 16px;
+  margin-bottom: 8px;
   height: $filter-height;
   .searchWrapper {
     display: flex;
     justify-content: space-between;
-    padding: 0 16px 8px 8px;
     height: 40px;
+    margin-left: 16px;
     .searchBar {
       height: $filter-height;
-      width: calc(100% - 104px - 16px - 32px);
+      width: 100%;
       margin-right: 16px;
       padding: 0 8px;
       border: solid 1px $color-main;
@@ -64,12 +77,12 @@
       border-radius: $border-radius;
       background-color: $color-bg;
       color: $color-text;
-
     }
     .dropDown {
-      position: relative;
-      height: $filter-height;
-      width: 104px;
+      position: absolute;
+      right: 16px;
+      height: $filter-height + 2;
+      width: 96px;
       padding: 8px;
       margin-right: 8px;
       -webkit-appearance: none;
@@ -85,8 +98,9 @@
 
 .clearFilters {
   @include linkHover();
-  position: relative;
-  height: 32px;
+  position: absolute;
+  right: 126px;
+  height: 42px;
   width: 32px;
   &:hover {
     &:after {
@@ -101,7 +115,7 @@
     content: "\d7";
     position: absolute;
     font-size: 34px;
-    top: -6px;
+    top: -3px;
     left: 6px;
     color: $color-text;
     font-weight: bold;
@@ -113,19 +127,24 @@
   display: flex;
   flex-wrap: wrap;
   overflow-y: auto;
-  margin-left: -8px;
+  margin-right: -16px;
 
+  .episodeContainer {
+    display: flex;
+    justify-content: center;
+
+    @media (max-width: 553px) {
+      width: 100%;
+    }
+  }
 
   .episode {
     display: flex;
     flex-direction: column;
-    padding: 8px 16px;
+    padding: 16px;
 
-    &:last-of-type {
-      margin-right: auto;
-    }
     .thumbnail {
-      width: 250px;
+      width: 229px;
       height: 140px;
       border-radius: $border-radius;
       box-shadow: 0 0 2px rgba(0, 0, 0, .4);
@@ -133,7 +152,7 @@
     .infoContainer {
       display: flex;
       flex-direction: column;
-      width: calc(100%);
+      width: 100%;
       margin-top: 8px;
       .title {
         font-size: 1rem;
