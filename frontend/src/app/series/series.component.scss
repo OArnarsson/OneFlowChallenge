@@ -8,9 +8,9 @@
   right: 0;
   display: flex;
   justify-content: space-between;
-  padding: 0;
   margin: 0;
-  background-color: $color-bg;
+  padding: 24px;
+  background-color: $color-bg-dark;
   color: $color-text;
 
   > div {
@@ -19,34 +19,135 @@
 }
 
 .hero {
-  display: flex;
-  flex-direction: column;
-  justify-content: center;
-  width: 40%;
+  position: relative;
+  width: 286px;
   padding-left: 16px;
-  text-align: center;
   .poster {
-    height: 70%;
-    width: 100%;
+    position: absolute;
+    top: 0;
+    bottom: 0;
+    left: 0;
+    right: 0;
     background-repeat: no-repeat;
-    background-position: center;
     background-size: contain;
+    border-radius: $border-radius;
   }
-  .name {
-    font-size: 3.5rem;
-    color: $color-main;
+  .summary {
+    position: absolute;
+    left: 8px;
+    top: 450px;
   }
 }
 
 .main {
-  overflow-y: auto;
-  width: calc(60% - (2 * 16px));
-  .episodeContainer {
-    padding: 8px;
-    padding-right: 16px;
-    .episode {
+  display: flex;
+  flex-direction: column;
+  width: calc(100% - 286px - (2 * 16px));
+}
+
+.filterContainer {
+  width: 100%;
+  margin-bottom: 16px;
+  height: $filter-height;
+  .searchWrapper {
+    display: flex;
+    justify-content: space-between;
+    padding: 0 16px 8px 8px;
+    height: 40px;
+    .searchBar {
+      height: $filter-height;
+      width: calc(100% - 104px - 16px - 32px);
+      margin-right: 16px;
+      padding: 0 8px;
+      border: solid 1px $color-main;
+      font-size: 1rem;
+      border-radius: $border-radius;
+      background-color: $color-bg;
+      color: $color-text;
+
+    }
+    .dropDown {
+      position: relative;
+      height: $filter-height;
+      width: 104px;
       padding: 8px;
-      background-color: rebeccapurple;
+      margin-right: 8px;
+      -webkit-appearance: none;
+      border: solid 1px $color-main;
+      border-radius: $border-radius;
+      font-size: 1rem;
+      background-color: $color-bg;
+      color: $color-text;
+      text-align: center;
+    }
+  }
+}
+
+.clearFilters {
+  @include linkHover();
+  position: relative;
+  height: 32px;
+  width: 32px;
+  &:hover {
+    &:after {
+      color: $color-main-light;
+    }
+  }
+  &:focus:after, &:active:after {
+    color: $color-main;
+  }
+
+  &:after {
+    content: "\d7";
+    position: absolute;
+    font-size: 34px;
+    top: -6px;
+    left: 6px;
+    color: $color-text;
+    font-weight: bold;
+    transition: color .4s;
+  }
+}
+
+.masterEpisodeContainer {
+  display: flex;
+  flex-wrap: wrap;
+  overflow-y: auto;
+  margin-left: -8px;
+
+
+  .episode {
+    display: flex;
+    flex-direction: column;
+    padding: 8px 16px;
+
+    &:last-of-type {
+      margin-right: auto;
+    }
+    .thumbnail {
+      width: 250px;
+      height: 140px;
+      border-radius: $border-radius;
+      box-shadow: 0 0 2px rgba(0, 0, 0, .4);
+    }
+    .infoContainer {
+      display: flex;
+      flex-direction: column;
+      width: calc(100%);
+      margin-top: 8px;
+      .title {
+        font-size: 1rem;
+      }
+      .season {
+        padding-top: 4px;
+        color: #ccc;
+        span {
+          @include linkHover();
+          &:hover {
+            text-decoration: underline;
+          }
+        }
+      }
     }
   }
 }

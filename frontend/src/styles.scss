@@ -1,3 +1,32 @@
-$color-main: #cc7b19;
-$color-bg: #565a5d;
+
+$color-bg: #313335;
+$color-bg-light: lighten($color-bg, 5%);
+$color-bg-dark: darken($color-bg, 5%);
+
 $color-text: #f0f0f0;
+
+$color-main: #cc7b19;
+$color-main-light: lighten($color-main, 5%);
+$color-main-dark: darken($color-main, 5%);
+
+$border-radius: 2px;
+$filter-height: 40px;
+
+@import url('https://fonts.googleapis.com/css?family=Oxygen:300,400');
+
+html, body {
+  font-family: 'Oxygen', sans-serif;
+  font-size: .9rem;
+}
+
+
+@mixin linkHover() {
+  transition: color .4s;
+  &:hover {
+    cursor: pointer;
+    color: $color-main-light;
+  }
+  &:active, &:focus {
+    color: $color-main;
+  }
+}
