@@ -135,6 +135,7 @@
 }
 
 .masterEpisodeContainer {
+  position: relative;
   display: flex;
   flex-wrap: wrap;
   overflow-y: auto;
@@ -143,7 +144,9 @@
   .episodeContainer {
     display: flex;
     justify-content: center;
+    min-height: 100px;
     width: 16.66%;
+
     @media (max-width: 1919px) {
       width: 20%;
     }
@@ -200,7 +203,9 @@
 }
 
 .noEpisode {
-  width: 100%;
+  position: absolute;
+  left: 0;
+  right: 0;
   text-align: center;
   font-size: 2rem;
   padding-top: 24px;

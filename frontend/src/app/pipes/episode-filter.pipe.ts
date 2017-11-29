@@ -6,15 +6,20 @@ import {Episode} from '../models/Episode';
 })
 export class EpisodeFilterPipe implements PipeTransform {
 
-  transform(episodes: Episode[], searchString: string, cssClass: string): any {
-    if (searchString) {
-      const filtered = this.makeCopy(episodes).filter(episode => {
-        return episode.name.toLowerCase().includes(searchString.toLowerCase());
-      });
-      return this.withSpan(filtered, searchString.toLowerCase(), cssClass);
+  transform(episodes: Episode[], searchString: string, cssClass = 'searchHighlight'): any {
+    if (!searchString) {
+      return episodes;
     }
 
-    return episodes;
+    const filtered = this.makeCopy(episodes).filter(episode => {
+      return episode.name.toLowerCase().includes(searchString.toLowerCase());
+    });
+
+    if (filtered.length === 0) {
+      return [-1];
+    }
+
+    return this.withSpan(filtered, searchString.toLowerCase(), cssClass);
   }
 
   private withSpan(episodes: Episode[], searchString: string, cssClass: string) {

@@ -22,12 +22,8 @@
     </div>
 
     <div class="masterEpisodeContainer">
-      <div class="noEpisode" [class.invisible]="filteredEpisodes?.length !== 0">
-        Oops.. no episodes match current filters.
-      </div>
-
       <div class="episodeContainer" *ngFor="let episode of series?.episodes | episodeFilter:filterString:'searchHighlight'">
-        <div class="episode">
+        <div class="episode" *ngIf="episode !== -1">
           <div class="thumbnail" [ngStyle]="{'background-image': 'url(' + episode?.image?.medium+ ')'}"></div>
           <div class="infoContainer">
             <div class="title" [innerHTML]="episode.name | sanitize"></div>
@@ -35,6 +31,11 @@
                 (click)="this.query.setValue(episode.name)">Episode {{episode.number}}</span></div>
           </div>
         </div>
+
+        <div class="noEpisode" *ngIf="episode === -1">
+          Oops.. no episodes match your current filters.
+        </div>
+
       </div>
     </div>
   </div>

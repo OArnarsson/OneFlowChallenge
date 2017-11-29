@@ -4,7 +4,10 @@ export class Series {
   constructor(
       public name = '',
       public summary = '',
-      public image = '',
+      public image = {
+        original: '',
+        medium: ''
+      },
       public episodes: Episode[],
       public createdAt = 0,
       public updatedAt = 0
