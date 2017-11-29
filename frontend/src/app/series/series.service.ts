@@ -9,7 +9,7 @@ export class SeriesService {
 
   constructor(private http: HttpClient) {}
 
-  public getSeriesByName(name: String, season = ''): Observable<Series> {
+  public getSeriesByName(name: string, season = ''): Observable<Series> {
     return this.http.get<Series>(`${this.basePath}/series/${name}${season}`);
   }
 }

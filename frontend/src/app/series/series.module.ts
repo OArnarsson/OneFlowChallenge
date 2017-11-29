@@ -1,11 +1,12 @@
-import { NgModule } from '@angular/core';
-import { CommonModule } from '@angular/common';
-import { SeriesService } from './series.service';
-import { SeriesComponent } from './series.component';
-import { RouterModule } from '@angular/router';
-import { HttpClientModule } from '@angular/common/http';
-import { SanitizePipe } from '../pipes/sanitize.pipe';
-import { FormsModule, ReactiveFormsModule } from '@angular/forms';
+import {NgModule} from '@angular/core';
+import {CommonModule} from '@angular/common';
+import {SeriesService} from './series.service';
+import {SeriesComponent} from './series.component';
+import {RouterModule} from '@angular/router';
+import {HttpClientModule} from '@angular/common/http';
+import {SanitizePipe} from '../pipes/sanitize.pipe';
+import {FormsModule, ReactiveFormsModule} from '@angular/forms';
+import {EpisodeFilterPipe} from '../pipes/episode-filter.pipe';
 
 @NgModule({
   imports: [
@@ -15,7 +16,11 @@ import { FormsModule, ReactiveFormsModule } from '@angular/forms';
     FormsModule,
     RouterModule.forChild([{path: '', component: SeriesComponent}])
   ],
-  declarations: [SeriesComponent, SanitizePipe],
+  declarations: [
+    SeriesComponent,
+    SanitizePipe,
+    EpisodeFilterPipe
+  ],
   providers: [SeriesService],
 })
 

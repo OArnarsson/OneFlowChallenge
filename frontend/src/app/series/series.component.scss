@@ -13,6 +13,10 @@
   background-color: $color-bg-dark;
   color: $color-text;
 
+  @media (max-width: 1135px) {
+    padding-left: 0;
+  }
+
   > div {
     height: 100%;
   }
@@ -24,7 +28,7 @@
   transition: width .4s;
   padding-left: 16px;
 
-  @media (max-width: 1133px) {
+  @media (max-width: 1135px) {
     width: 0;
     opacity: 0;
     pointer-events: none;
@@ -39,10 +43,11 @@
     background-repeat: no-repeat;
     background-size: contain;
     border-radius: $border-radius;
+    box-shadow: $box-shadow;
   }
   .summary {
     position: absolute;
-    left: 8px;
+    left: 0;
     top: 450px;
   }
 }
@@ -53,20 +58,21 @@
   width: calc(100% - 286px - (2 * 16px));
   transition: width .4s;
 
-  @media (max-width: 1133px) {
+  @media (max-width: 1135px) {
     width: 100%;
   }
 }
 
 .filterContainer {
+  z-index: 1;
   width: 100%;
-  margin-bottom: 8px;
+  margin-bottom: 2px;
   height: $filter-height;
   .searchWrapper {
     display: flex;
     justify-content: space-between;
     height: 40px;
-    margin-left: 16px;
+    margin-left: 8px;
     .searchBar {
       height: $filter-height;
       width: 100%;
@@ -77,10 +83,13 @@
       border-radius: $border-radius;
       background-color: $color-bg;
       color: $color-text;
+      outline: none !important;
+      box-shadow: 1px 6px 6px 6px rgba(0, 0, 0, 0.4);
     }
     .dropDown {
+      @include linkHover();
       position: absolute;
-      right: 16px;
+      right: 14px;
       height: $filter-height + 2;
       width: 96px;
       padding: 8px;
@@ -92,6 +101,8 @@
       background-color: $color-bg;
       color: $color-text;
       text-align: center;
+      cursor: pointer;
+      outline: none !important;
     }
   }
 }
@@ -99,7 +110,7 @@
 .clearFilters {
   @include linkHover();
   position: absolute;
-  right: 126px;
+  right: 118px;
   height: 42px;
   width: 32px;
   &:hover {
@@ -132,6 +143,19 @@
   .episodeContainer {
     display: flex;
     justify-content: center;
+    width: 16.66%;
+    @media (max-width: 1919px) {
+      width: 20%;
+    }
+    @media (max-width: 1580px) {
+      width: 25%;
+    }
+    @media (max-width: 1340px) {
+      width: 33.33%;
+    }
+    @media (max-width: 790px) {
+      width: 50%;
+    }
 
     @media (max-width: 553px) {
       width: 100%;
@@ -141,13 +165,17 @@
   .episode {
     display: flex;
     flex-direction: column;
-    padding: 16px;
+    width: 100%;
+    padding: 16px 8px;
 
     .thumbnail {
-      width: 229px;
+      width: 100%;
+      min-width: 244px;
       height: 140px;
       border-radius: $border-radius;
-      box-shadow: 0 0 2px rgba(0, 0, 0, .4);
+      box-shadow: $box-shadow;
+      background-size: cover;
+      background-position: center center;
     }
     .infoContainer {
       display: flex;
@@ -169,4 +197,12 @@
       }
     }
   }
+}
+
+.noEpisode {
+  width: 100%;
+  text-align: center;
+  font-size: 2rem;
+  padding-top: 24px;
+  color: $color-bg-light;
 }

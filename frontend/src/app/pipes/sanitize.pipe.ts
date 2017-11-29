@@ -8,7 +8,7 @@ export class SanitizePipe implements PipeTransform {
 
   constructor(private _sanitizer: DomSanitizer) {}
 
-  transform(value: String): String {
+  transform(value: string): string {
     return this._sanitizer.sanitize(SecurityContext.HTML, value);
   }
 }

@@ -1,9 +1,6 @@
 import {Component, OnDestroy, OnInit} from '@angular/core';
-import { SeriesService } from "./series.service";
-import { Series } from "../models/Series";
-import { Observable, Subscribable } from "rxjs/Observable";
-import { FormControl } from "@angular/forms";
-import { Episode } from "../models/Episode";
+import {SeriesService} from "./series.service";
+import {Series} from "../models/Series";
 import "rxjs/add/operator/debounceTime";
 import "rxjs/add/operator/distinctUntilChanged";
 
@@ -13,61 +10,33 @@ import "rxjs/add/operator/distinctUntilChanged";
   styleUrls: ['./series.component.scss'],
 })
 export class SeriesComponent implements OnInit, OnDestroy {
-  query: FormControl = new FormControl();
-  $query;
-  public filterString: String;
-  private episodes: Episode[];
-  public filteredEpisodes: Episode[];
+  public filterString: string;
   public series: Series;
   public availableSeasons = [];
   public selectedSeason = 0;
   private $seriesObserver;
 
-  constructor(private seriesS: SeriesService) { }
-
-  ngOnInit() {
-    this.initSeries();
-    this.initSearch('name');
+  constructor(private seriesS: SeriesService) {
   }
 
-  private initSeries() {
-    this.$seriesObserver = this.seriesS.getSeriesByName('Silicon Valley')
+  ngOnInit() {
+    this.getSeries();
+  }
+
+  private getSeries(season = '') {
+    this.$seriesObserver = this.seriesS.getSeriesByName('Silicon Valley', season)
         .subscribe((series) => {
-          this.setValues(series);
-          this.setAvailableSeasons();
+          this.series = series;
+          this.getAvailableSeasons(this.series);
         }, error => console.log(error))
   }
 
-  private setValues(series: Series) {
-    this.series = series;
-    this.episodes = this.series.episodes;
-    this.filteredEpisodes = this.episodes;
-  }
-
-  private setAvailableSeasons() {
-    this.filteredEpisodes.map(ep => {
-      if (!this.availableSeasons.includes(ep.season)) {
-        this.availableSeasons.push(ep.season);
+  private getAvailableSeasons(series: Series) {
+    series.episodes.map(episode => {
+      if (!this.availableSeasons.includes(episode.season)) {
+        this.availableSeasons.push(episode.season);
       }
     })
-  }
-
-  private initSearch(field) {
-    this.$query = this.query.valueChanges
-        .debounceTime(250)
-        .distinctUntilChanged()
-        .subscribe(
-            query => {
-              this.filter(query, field);
-            }
-        );
-  }
-
-  private filter(query, field) {
-    const filter = query ? query.toLowerCase() : null;
-    this.filteredEpisodes = filter
-        ? this.episodes.filter(item => item[field].toLowerCase().indexOf(filter) !== -1)
-        : this.episodes;
   }
 
   public filterBySeason(season?) {
@@ -76,24 +45,19 @@ export class SeriesComponent implements OnInit, OnDestroy {
     }
 
     if (this.selectedSeason === 0) {
-      this.initSeries();
+      this.getSeries();
     } else {
-      this.$seriesObserver = this.seriesS.getSeriesByName('Silicon Valley', '?season=' + this.selectedSeason)
-          .subscribe((series) => {
-            this.setValues(series);
-            this.filter(this.filterString, 'name');
-          }, error => console.log(error))
+      this.getSeries(`?season=${this.selectedSeason}`)
     }
   }
 
   public clearFilters() {
-    this.query.setValue('');
+    this.filterString = '';
     this.selectedSeason = 0;
     this.filterBySeason();
   }
 
   ngOnDestroy() {
-    this.$query.unsubscribe();
     this.$seriesObserver.unsubscribe();
   }
 }
