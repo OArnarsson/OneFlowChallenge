@@ -59,4 +59,4 @@ typings/
 
 .idea
 .DS_Store
-server/static
+server/static/docs
