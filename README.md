@@ -1,6 +1,8 @@
 # OneFlowChallenge
 Junior Full Stack JavaScript Technical Challenge
 
+[Here you can see it live](http://oneflow.klokk.io/) (only HTTP, sorry <code>:(</code>). Please note that since it's only HTTP, not HTTPS the PWA service worker functionality does not work. It does however work locally.  
+
 ## Task 1
 #### Frontend: 
 I decided to use [Angular5](https://github.com/angular/angular-cli) to display the data.  
