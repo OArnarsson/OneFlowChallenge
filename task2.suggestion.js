@@ -15,9 +15,9 @@ const inviteUser = (req, res) => {
 					return res.status(400).json({message: 'User already invited to this shop'});
 				} else if (status === 201) {
 					const options = {upsert: true, new: true};
-					const createdUser = await User.findOneAndUpdate({authId}, {authId, email}, options);
 					
 					try {
+						const createdUser = await User.findOneAndUpdate({authId}, {authId, email}, options);
 						const shop = await Shop.findById(shopId);
 						
 						if (!shop) {
